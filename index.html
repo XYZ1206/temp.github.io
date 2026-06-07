@@ -22,7 +22,7 @@
   <div class="page-glow page-glow-right" aria-hidden="true"></div>
 
   <header class="hero-shell">
-    <nav class="top-nav is-compact" aria-label="Primary">
+    <nav class="top-nav" aria-label="Primary">
       <a class="brand-mark" href="#top">GSWAM</a>
       <div class="nav-links">
         <a href="#abstract">Abstract</a>
@@ -133,37 +133,53 @@
 
       <article id="real-world" class="body-card subsection-card">
         <h3>Real-world</h3>
-        <div class="video-grid">
-          <figure class="video-card">
-            <video controls playsinline preload="metadata">
-              <source src="./static/video/realworld/0001.mp4" type="video/mp4">
-              Your browser does not support the video tag.
-            </video>
-          </figure>
-          <figure class="video-card">
-            <video controls playsinline preload="metadata">
-              <source src="./static/video/realworld/0002.mp4" type="video/mp4">
-              Your browser does not support the video tag.
-            </video>
-          </figure>
-          <figure class="video-card">
-            <video controls playsinline preload="metadata">
-              <source src="./static/video/realworld/0003.mp4" type="video/mp4">
-              Your browser does not support the video tag.
-            </video>
-          </figure>
-          <figure class="video-card">
-            <video controls playsinline preload="metadata">
-              <source src="./static/video/realworld/0004.mp4" type="video/mp4">
-              Your browser does not support the video tag.
-            </video>
-          </figure>
-          <figure class="video-card">
-            <video controls playsinline preload="metadata">
-              <source src="./static/video/realworld/0005.mp4" type="video/mp4">
-              Your browser does not support the video tag.
-            </video>
-          </figure>
+        <div class="video-carousel" data-carousel>
+          <button class="carousel-arrow carousel-prev" type="button" aria-label="Previous video">❮</button>
+
+          <div class="carousel-window">
+            <div class="carousel-track">
+              <figure class="carousel-slide is-active">
+                <video controls playsinline preload="metadata">
+                  <source src="./static/video/realworld/0001.mp4" type="video/mp4">
+                  Your browser does not support the video tag.
+                </video>
+              </figure>
+              <figure class="carousel-slide">
+                <video controls playsinline preload="metadata">
+                  <source src="./static/video/realworld/0002.mp4" type="video/mp4">
+                  Your browser does not support the video tag.
+                </video>
+              </figure>
+              <figure class="carousel-slide">
+                <video controls playsinline preload="metadata">
+                  <source src="./static/video/realworld/0003.mp4" type="video/mp4">
+                  Your browser does not support the video tag.
+                </video>
+              </figure>
+              <figure class="carousel-slide">
+                <video controls playsinline preload="metadata">
+                  <source src="./static/video/realworld/0004.mp4" type="video/mp4">
+                  Your browser does not support the video tag.
+                </video>
+              </figure>
+              <figure class="carousel-slide">
+                <video controls playsinline preload="metadata">
+                  <source src="./static/video/realworld/0005.mp4" type="video/mp4">
+                  Your browser does not support the video tag.
+                </video>
+              </figure>
+            </div>
+          </div>
+
+          <button class="carousel-arrow carousel-next" type="button" aria-label="Next video">❯</button>
+        </div>
+
+        <div class="carousel-dots" aria-label="Real-world video navigation">
+          <button class="carousel-dot is-active" type="button" aria-label="Show video 1"></button>
+          <button class="carousel-dot" type="button" aria-label="Show video 2"></button>
+          <button class="carousel-dot" type="button" aria-label="Show video 3"></button>
+          <button class="carousel-dot" type="button" aria-label="Show video 4"></button>
+          <button class="carousel-dot" type="button" aria-label="Show video 5"></button>
         </div>
       </article>
 
@@ -182,28 +198,44 @@
       </div>
     </section>
   </main>
-  <h3 class="title is-4">RLBench</h3>
-          </div>
 
-          <div class="content">
-            <h3 class="title is-4">World Model</h3>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
+  <script>
+    document.querySelectorAll('[data-carousel]').forEach((carousel) => {
+      const track = carousel.querySelector('.carousel-track');
+      const slides = Array.from(track.querySelectorAll('.carousel-slide'));
+      const dots = Array.from(carousel.parentElement.querySelectorAll('.carousel-dot'));
+      const prevButton = carousel.querySelector('.carousel-prev');
+      const nextButton = carousel.querySelector('.carousel-next');
+      let currentIndex = 0;
 
-  <h3 class="title is-4">RLBench</h3>
-          </div>
+      function updateCarousel(nextIndex) {
+        currentIndex = (nextIndex + slides.length) % slides.length;
+        track.style.transform = `translateX(-${currentIndex * 100}%)`;
 
-          <div class="content">
-            <h3 class="title is-4">World Model</h3>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
+        slides.forEach((slide, index) => {
+          slide.classList.toggle('is-active', index === currentIndex);
+          slide.querySelectorAll('video').forEach((video) => {
+            if (index !== currentIndex) {
+              video.pause();
+            }
+          });
+        });
 
+        dots.forEach((dot, index) => {
+          dot.classList.toggle('is-active', index === currentIndex);
+        });
+      }
+
+      prevButton.addEventListener('click', () => updateCarousel(currentIndex - 1));
+      nextButton.addEventListener('click', () => updateCarousel(currentIndex + 1));
+
+      dots.forEach((dot, index) => {
+        dot.addEventListener('click', () => updateCarousel(index));
+      });
+
+      updateCarousel(0);
+    });
+  </script>
 </body>
 
 </html>
