@@ -1,187 +1,225 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 
 <head>
   <meta charset="utf-8">
   <meta name="description"
-    content="Project page for GSWAM, a unified Gaussian world action model for robotic manipulation.">
+    content="Deformable Neural Radiance Fields creates free-viewpoint portraits (nerfies) from casually captured videos.">
   <meta name="keywords" content="Robotic Manipulation, World Action Model, 3D Gaussian Splatting">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>GSWAM: A Unified Gaussian World Action Model for Robotic Manipulation</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link
-    href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600&family=Manrope:wght@400;500;600;700;800&display=swap"
-    rel="stylesheet">
+
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro" rel="stylesheet">
+
+  <link rel="stylesheet" href="./static/css/bulma.min.css">
+  <link rel="stylesheet" href="./static/css/fontawesome.all.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
   <link rel="stylesheet" href="./static/css/index.css">
   <link rel="icon" href="./static/images/favicon.svg">
+
 </head>
 
-<body id="top">
-  <div class="page-glow page-glow-left" aria-hidden="true"></div>
-  <div class="page-glow page-glow-right" aria-hidden="true"></div>
+<body>
 
-  <header class="hero-shell">
-    <nav class="top-nav is-compact" aria-label="Primary">
-      <a class="brand-mark" href="#top">GSWAM</a>
-      <div class="nav-links">
-        <a href="#abstract">Abstract</a>
-        <a href="#motivation">Motivation</a>
-        <a href="#method">Method</a>
-        <a href="#experiments">Experiments</a>
-        <a href="#real-world">Real-world</a>
-        <a href="#libero">LIBERO</a>
-        <a href="#rlbench">RLBench</a>
-        <a href="#world-model">World Model</a>
-      </div>
-    </nav>
-
-    <section class="hero-stack section-shell">
-      <div class="hero-copy">
-        <h1>GSWAM: A Unified Gaussian World Action Model for Robotic Manipulation</h1>
-
-        <div class="hero-meta">
-          <p class="authors-line">Anonymous Authors</p>
-        </div>
-
-        <div class="cta-row">
-          <a class="cta-button" href="#">Paper</a>
-          <a class="cta-button" href="#">arXiv</a>
-          <a class="cta-button" href="#">Code</a>
-        </div>
-
-        <p class="hero-tldr">
-          <strong>TL;DR:</strong> GSWAM jointly models 3D scene dynamics and robot actions in a shared
-          3D-anchored space for geometrically consistent world modeling and spatially grounded action
-          reasoning.
-        </p>
-      </div>
-
-      <div class="hero-media" id="overview-video">
-        <div class="media-card">
-          <div class="section-header section-header-centered">
-            <h2 class="section-title-simple">Overview Video</h2>
+  <section class="hero">
+    <div class="hero-body">
+      <div class="container is-max-desktop">
+        <div class="columns is-centered">
+          <div class="column has-text-centered">
+            <h1 class="title is-1 publication-title">GSWAM: A Unified Gaussian World Action Model for Robotic
+              Manipulation</h1>
+            <div class="is-size-5 publication-authors">
+              <span class="author-block">Anonymous Authors</span>
+            </div>
+            <div class="column has-text-centered">
+              <div class="publication-links">
+                <span class="link-block">
+                  <a href="#" class="external-link button is-normal is-rounded is-dark">
+                    <span class="icon">
+                      <i class="fas fa-file-pdf"></i>
+                    </span>
+                    <span>Paper</span>
+                  </a>
+                </span>
+                <span class="link-block">
+                  <a href="#" class="external-link button is-normal is-rounded is-dark">
+                    <span class="icon">
+                      <i class="ai ai-arxiv"></i>
+                    </span>
+                    <span>arXiv</span>
+                  </a>
+                </span>
+                <span class="link-block">
+                  <a href="#" class="external-link button is-normal is-rounded is-dark">
+                    <span class="icon">
+                      <i class="fab fa-github"></i>
+                    </span>
+                    <span>Code</span>
+                  </a>
+                </span>
+              </div>
+            </div>
           </div>
-          <video class="hero-video" controls playsinline preload="metadata">
-            <source src="./static/video/overview.mp4" type="video/mp4">
-            Your browser does not support the video tag.
-          </video>
         </div>
       </div>
-    </section>
-  </header>
+    </div>
+  </section>
 
-  <main>
-    <section id="abstract" class="section-shell content-shell content-section">
-      <div class="section-header section-header-centered">
-        <h2 class="section-title-simple">Abstract</h2>
-      </div>
-      <div class="body-card prose-card prose-card-large">
-        <p>
-          World action models (WAMs) provide a promising learning paradigm for robotic manipulation by jointly modeling
-          future observations and robot actions. However, most existing methods operate in 2D image spaces, making it
-          difficult to explicitly capture spatial scene dynamics, maintain cross-view geometric consistency, and
-          effectively align visual observations with robot actions. To address this, we propose GSWAM, a world action
-          model based on 3D Gaussian Splatting (3DGS), which jointly models scene dynamics and robot actions in a
-          unified 3D space. We first compress 3DGS scenes into geometrically consistent latent representations using a
-          Gaussian variational autoencoder (GSVAE). Furthermore, we align scenes and actions within a shared
-          3D-anchored space, enabling GSWAM to explicitly model the joint distribution between 3D scene dynamics and
-          robot actions. Based on this representation, we design a 3D-anchor-based spatial diffusion transformer to
-          model spatial interactions between scenes and actions. To accommodate their different generative
-          characteristics, we further employ decoupled flow timesteps for the two modalities, allowing the model to
-          jointly learn scene-action generation and action-conditioned future scene prediction. Experiments on both
-          simulated and real-world robotic manipulation tasks demonstrate that GSWAM outperforms representative
-          existing methods in both action generation and future scene prediction.
-        </p>
-      </div>
-    </section>
-
-    <section id="motivation" class="section-shell content-shell content-section">
-      <div class="section-header section-header-centered">
-        <h2 class="section-title-simple">Motivation</h2>
-      </div>
-      <figure class="body-card figure-card">
-        <img src="./static/images/top.png" alt="Motivation figure">
-        <figcaption>
-          2D WAMs lack the ability to model spatial physical dynamics and suffer from cross-view geometric
-          inconsistency, while GSWAM jointly models 3D scenes and actions in a 3D-anchored space, enabling
-          geometrically consistent world modeling and spatially grounded action reasoning.
-        </figcaption>
-      </figure>
-    </section>
-
-    <section id="method" class="section-shell content-shell content-section">
-      <div class="section-header section-header-centered">
-        <h2 class="section-title-simple">Method</h2>
-      </div>
-      <figure class="body-card figure-card">
-        <img src="./static/images/overview.png" alt="Method overview">
-        <figcaption>
-          <strong>Overview of GSWAM.</strong> Given multi-view observations, we construct a structured 3DGS scene and
-          compress it into geometrically consistent 3D-aware latents using GSVAE. Scene tokens and action tokens are
-          then aligned in a unified 3D-anchored space, where a spatial diffusion transformer models their joint
-          distribution with decoupled flow timesteps. The model jointly predicts future robot actions and future 3DGS
-          scene latents, which are decoded into future 3D scenes for rendering and evaluation.
-        </figcaption>
-      </figure>
-    </section>
-
-    <section id="experiments" class="section-shell content-shell content-section">
-      <div class="section-header section-header-centered">
-        <h2 class="section-title-simple">Experiments</h2>
-      </div>
-
-      <article id="real-world" class="body-card subsection-card">
-        <h3>Real-world</h3>
-        <div class="video-grid">
-          <figure class="video-card">
-            <video controls playsinline preload="metadata">
-              <source src="./static/video/realworld/0001.mp4" type="video/mp4">
+  <section class="section" id="overview-video">
+    <div class="container is-max-desktop">
+      <div class="columns is-centered has-text-centered">
+        <div class="column is-four-fifths">
+          <h2 class="title is-3">Overview Video</h2>
+          <div class="content">
+            <video controls playsinline width="100%">
+              <source src="./static/video/overview.mp4" type="video/mp4">
               Your browser does not support the video tag.
             </video>
-          </figure>
-          <figure class="video-card">
-            <video controls playsinline preload="metadata">
-              <source src="./static/video/realworld/0002.mp4" type="video/mp4">
-              Your browser does not support the video tag.
-            </video>
-          </figure>
-          <figure class="video-card">
-            <video controls playsinline preload="metadata">
-              <source src="./static/video/realworld/0003.mp4" type="video/mp4">
-              Your browser does not support the video tag.
-            </video>
-          </figure>
-          <figure class="video-card">
-            <video controls playsinline preload="metadata">
-              <source src="./static/video/realworld/0004.mp4" type="video/mp4">
-              Your browser does not support the video tag.
-            </video>
-          </figure>
-          <figure class="video-card">
-            <video controls playsinline preload="metadata">
-              <source src="./static/video/realworld/0005.mp4" type="video/mp4">
-              Your browser does not support the video tag.
-            </video>
-          </figure>
+          </div>
         </div>
-      </article>
-
-      <div class="subsection-grid">
-        <article id="libero" class="body-card subsection-card">
-          <h3>LIBERO</h3>
-        </article>
-
-        <article id="rlbench" class="body-card subsection-card">
-          <h3>RLBench</h3>
-        </article>
-
-        <article id="world-model" class="body-card subsection-card">
-          <h3>World Model</h3>
-        </article>
       </div>
-    </section>
-  </main>
+    </div>
+  </section>
+
+  <section class="section" id="abstract">
+    <div class="container is-max-desktop">
+      <div class="columns is-centered has-text-centered">
+        <div class="column is-four-fifths">
+          <h2 class="title is-3">Abstract</h2>
+          <div class="content has-text-justified">
+            <p>
+              World action models (WAMs) provide a promising learning paradigm for robotic manipulation by jointly
+              modeling future
+              observations and robot actions. However, most existing methods operate in 2D image spaces, making it
+              difficult to
+              explicitly capture spatial scene dynamics, maintain cross-view geometric consistency, and effectively
+              align visual
+              observations with robot actions. To address this, we propose GSWAM, a world action model based on 3D
+              Gaussian Splatting
+              (3DGS), which jointly models scene dynamics and robot actions in a unified 3D space. We first compress
+              3DGS scenes into
+              geometrically consistent latent representations using a Gaussian variational autoencoder (GSVAE).
+              Furthermore, we align
+              scenes and actions within a shared 3D-anchored space, enabling GSWAM to explicitly model the joint
+              distribution between
+              3D scene dynamics and robot actions. Based on this representation, we design a 3D-anchor-based spatial
+              diffusion
+              transformer to model spatial interactions between scenes and actions. To accommodate their different
+              generative
+              characteristics, we further employ decoupled flow timesteps for the two modalities, allowing the model to
+              jointly learn
+              scene-action generation and action-conditioned future scene prediction. Experiments on both simulated and
+              real-world
+              robotic manipulation tasks demonstrate that GSWAM outperforms representative existing methods in both
+              action generation
+              and future scene prediction.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="motivation">
+    <div class="container is-max-desktop">
+      <div class="columns is-centered has-text-centered">
+        <div class="column is-four-fifths">
+          <h2 class="title is-3">Motivation</h2>
+          <div class="content">
+            <img src="./static/images/top.png" alt="Motivation figure" />
+            <p class="has-text-left">
+              2D WAMs lack the ability to model spatial physical dynamics and suffer from cross-view
+              geometric inconsistency, while GSWAM jointly models 3D scenes and actions in a
+              3D-anchored space, enabling geometrically consistent world modeling and spatially
+              grounded action reasoning.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="method">
+    <div class="container is-max-desktop">
+      <div class="columns is-centered has-text-centered">
+        <div class="column is-four-fifths">
+          <h2 class="title is-3">Method</h2>
+          <div class="content">
+            <img src="./static/images/overview.png" alt="Method overview" />
+            <p class="has-text-left">
+              <strong>Overview of GSWAM.</strong> Given multi-view observations, we construct a
+              structured 3DGS scene and compress it into geometrically consistent 3D-aware latents
+              using GSVAE. Scene tokens and action tokens are then aligned in a unified 3D-anchored
+              space, where a spatial diffusion transformer models their joint distribution with
+              decoupled flow timesteps. The model jointly predicts future robot actions and future
+              3DGS scene latents, which are decoded into future 3D scenes for rendering and
+              evaluation.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="experiments">
+    <div class="container is-max-desktop">
+      <div class="columns is-centered">
+        <div class="column is-four-fifths">
+          <h2 class="title is-3 has-text-centered">Experiments</h2>
+
+          <div class="content">
+            <h3 class="title is-4">Real-world</h3>
+            <div class="columns is-multiline">
+              <div class="column is-half">
+                <video controls playsinline width="100%">
+                  <source src="./static/video/realworld/0001.mp4" type="video/mp4">
+                  Your browser does not support the video tag.
+                </video>
+              </div>
+              <div class="column is-half">
+                <video controls playsinline width="100%">
+                  <source src="./static/video/realworld/0002.mp4" type="video/mp4">
+                  Your browser does not support the video tag.
+                </video>
+              </div>
+              <div class="column is-half">
+                <video controls playsinline width="100%">
+                  <source src="./static/video/realworld/0003.mp4" type="video/mp4">
+                  Your browser does not support the video tag.
+                </video>
+              </div>
+              <div class="column is-half">
+                <video controls playsinline width="100%">
+                  <source src="./static/video/realworld/0004.mp4" type="video/mp4">
+                  Your browser does not support the video tag.
+                </video>
+              </div>
+              <div class="column is-half">
+                <video controls playsinline width="100%">
+                  <source src="./static/video/realworld/0005.mp4" type="video/mp4">
+                  Your browser does not support the video tag.
+                </video>
+              </div>
+            </div>
+          </div>
+
+          <div class="content">
+            <h3 class="title is-4">LIBERO</h3>
+          </div>
+
+          <div class="content">
+            <h3 class="title is-4">RLBench</h3>
+          </div>
+
+          <div class="content">
+            <h3 class="title is-4">World Model</h3>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
 </body>
 
 </html>
