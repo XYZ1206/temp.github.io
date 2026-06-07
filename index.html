@@ -59,9 +59,6 @@
 
       <div class="hero-media" id="overview-video">
         <div class="media-card">
-          <div class="section-header section-header-centered">
-            <h2 class="section-title-simple">Overview Video</h2>
-          </div>
           <video class="hero-video" controls playsinline preload="metadata">
             <source src="./static/video/overview.mp4" type="video/mp4">
             Your browser does not support the video tag.
@@ -101,7 +98,10 @@
         <h2 class="section-title-simple">Motivation</h2>
       </div>
       <figure class="body-card figure-card">
-        <img src="./static/images/top.png" alt="Motivation figure">
+        <video autoplay muted loop playsinline preload="metadata">
+          <source src="./static/video/motivation.mp4" type="video/mp4">
+          Your browser does not support the video tag.
+        </video>
         <figcaption>
           2D WAMs lack the ability to model spatial physical dynamics and suffer from cross-view geometric
           inconsistency, while GSWAM jointly models 3D scenes and actions in a 3D-anchored space, enabling

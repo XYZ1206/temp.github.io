@@ -288,6 +288,12 @@ main {
   background: rgba(255, 255, 255, 0.92);
 }
 
+.figure-card video {
+  width: 100%;
+  border-radius: 18px;
+  background: rgba(255, 255, 255, 0.92);
+}
+
 .figure-card figcaption {
   margin-top: 0.9rem;
   color: var(--muted);
