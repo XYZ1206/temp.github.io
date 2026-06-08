@@ -364,6 +364,18 @@ main {
   gap: 0.9rem;
 }
 
+#world-model {
+  width: min(100%, 46rem);
+  max-width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+#world-model .worldmodel-list {
+  width: min(100%, 40rem);
+  margin: 0 auto;
+}
+
 .worldmodel-list .video-card {
   margin: 0;
   padding: 0.75rem;
