@@ -342,6 +342,14 @@ main {
   box-shadow: inset 0 0 0 1px rgba(23, 32, 44, 0.06);
 }
 
+.carousel-slide figcaption {
+  margin-top: 0.75rem;
+  color: var(--muted);
+  font-size: 0.95rem;
+  line-height: 1.55;
+  text-align: center;
+}
+
 .carousel-arrow {
   width: 2.8rem;
   height: 2.8rem;
