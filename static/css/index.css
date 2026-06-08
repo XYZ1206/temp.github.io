@@ -302,7 +302,7 @@ main {
 }
 
 #real-world {
-  width: fit-content;
+  width: 36rem;
   max-width: 100%;
   margin: 0 auto;
 }
@@ -319,7 +319,7 @@ main {
   grid-template-columns: auto minmax(0, 1fr) auto;
   gap: 1rem;
   align-items: center;
-  width: 50%;
+  width: min(100%, 33.75rem);
   margin: 0 auto;
 }
 
