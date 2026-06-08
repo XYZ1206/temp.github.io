@@ -301,6 +301,11 @@ main {
   margin-bottom: 0.9rem;
 }
 
+#real-world {
+  width: min(100%, 36rem);
+  margin: 0 auto;
+}
+
 .subsection-grid {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
