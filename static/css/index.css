@@ -305,10 +305,11 @@ main {
   width: 36rem;
   max-width: 100%;
   margin: 0 auto;
+  margin-bottom: 3rem;
 }
 
 #libero {
-  margin-top: 1.75rem;
+  margin-top: 0;
 }
 
 .subsection-grid {
