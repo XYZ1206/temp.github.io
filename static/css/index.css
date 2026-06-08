@@ -302,10 +302,10 @@ main {
 }
 
 #real-world {
-  width: 36rem;
+  width: min(100%, 33.75rem);
   max-width: 100%;
   margin: 0 auto;
-  margin-bottom: 3rem;
+  margin-bottom: 4rem;
 }
 
 #libero {
@@ -352,11 +352,9 @@ main {
 }
 
 .video-carousel {
-  display: grid;
-  grid-template-columns: auto minmax(0, 1fr) auto;
-  gap: 1rem;
-  align-items: center;
-  width: min(100%, 33.75rem);
+  position: relative;
+  display: block;
+  width: 100%;
   margin: 0 auto;
 }
 
@@ -373,6 +371,10 @@ main {
 .carousel-slide {
   flex: 0 0 100%;
   margin: 0;
+  padding: 0.85rem;
+  border: 1px solid var(--line);
+  border-radius: 18px;
+  background: rgba(255, 255, 255, 0.58);
 }
 
 .carousel-slide video {
@@ -394,6 +396,9 @@ main {
 }
 
 .carousel-arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
   width: 2.8rem;
   height: 2.8rem;
   border: 0;
@@ -405,6 +410,14 @@ main {
   box-shadow: var(--shadow-soft);
   cursor: pointer;
   transition: transform 180ms ease, box-shadow 180ms ease, background-color 180ms ease;
+}
+
+.carousel-prev {
+  left: -1rem;
+}
+
+.carousel-next {
+  right: -1rem;
 }
 
 .carousel-arrow:hover {
@@ -470,12 +483,11 @@ main {
   }
 
   .video-carousel {
-    grid-template-columns: 1fr;
     width: 100%;
   }
 
   .carousel-arrow {
-    justify-self: center;
+    top: 50%;
   }
 
   .subsection-grid {
