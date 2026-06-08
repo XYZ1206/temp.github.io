@@ -306,7 +306,7 @@ main {
 }
 
 #experiments > * + * {
-  margin-top: 1.75rem;
+  margin-top: 1rem;
 }
 
 #real-world {
