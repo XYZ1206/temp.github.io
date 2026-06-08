@@ -302,7 +302,8 @@ main {
 }
 
 #real-world {
-  width: min(100%, 36rem);
+  width: fit-content;
+  max-width: 100%;
   margin: 0 auto;
 }
 
