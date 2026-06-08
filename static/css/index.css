@@ -365,14 +365,14 @@ main {
 }
 
 #world-model {
-  width: min(100%, 46rem);
+  width: min(100%, 50rem);
   max-width: 100%;
   margin-left: auto;
   margin-right: auto;
 }
 
 #world-model .worldmodel-list {
-  width: min(100%, 40rem);
+  width: min(100%, 44rem);
   margin: 0 auto;
 }
 
