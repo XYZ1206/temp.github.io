@@ -301,22 +301,25 @@ main {
   margin-bottom: 0.9rem;
 }
 
+#experiments > .section-header {
+  margin-bottom: 0;
+}
+
+#experiments > * + * {
+  margin-top: 1.75rem;
+}
+
 #real-world {
   width: min(100%, 38rem);
   max-width: 100%;
-  margin: 0 auto;
-  margin-bottom: 4rem;
-}
-
-#libero {
-  margin-top: 0;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .subsection-grid {
   display: grid;
   grid-template-columns: 1fr;
   gap: 1rem;
-  margin-top: 1rem;
 }
 
 .libero-grid {
