@@ -313,6 +313,8 @@ main {
   grid-template-columns: auto minmax(0, 1fr) auto;
   gap: 1rem;
   align-items: center;
+  width: 50%;
+  margin: 0 auto;
 }
 
 .carousel-window {
@@ -414,6 +416,7 @@ main {
 
   .video-carousel {
     grid-template-columns: 1fr;
+    width: 100%;
   }
 
   .carousel-arrow {
